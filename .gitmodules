@@ -1,6 +1,6 @@
 [submodule "Vim"]
-	path = Vim
-	url = https://github.com/Lin-Korey/silver-waddle/VimGeoProj/Vim
+        path = Vim
+        url = https://github.com/Lin-Korey/Vim.git  # 正确的子模块仓库URL
 [submodule "VimGeo"]
-	path = VimGeo
-	url = https://github.com/Lin-Korey/silver-waddle/VimGeoProj/VimGeo
+        path = VimGeo
+        url = https://github.com/Lin-Korey/VimGeo.git  # 正确的子模块仓库URL
