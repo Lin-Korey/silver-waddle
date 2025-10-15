@@ -1,0 +1,191 @@
+{
+	"name": "ray-distributed-debugger",
+	"displayName": "Ray Distributed Debugger",
+	"description": "",
+	"version": "0.1.4",
+	"engines": {
+		"vscode": "^1.66.0"
+	},
+	"icon": "ray_debugger_black_whiteBackground.png",
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onUri",
+		"onStartupFinished"
+	],
+	"publisher": "anyscalecompute",
+	"main": "./dist/extension.js",
+	"contributes": {
+		"viewsWelcome": [
+			{
+				"view": "rayDebuggerClusterList",
+				"contents": "No cluster found. Add a ray cluster to start. \n [Add Cluster](command:rayDebugger.addCluster) \n [Open README](command:rayDebugger.openReadme)"
+			}
+		],
+		"commands": [
+			{
+				"command": "rayDebugger.connectToDebuggingProcess",
+				"title": "Connect to remote process",
+				"category": "Ray Debugger",
+				"enablement": "!inDebugMode",
+				"icon": "$(debug-alt)"
+			},
+			{
+				"command": "rayDebugger.startDebugging",
+				"title": "Start debugging",
+				"category": "Ray Debugger",
+				"enablement": "!inDebugMode",
+				"icon": "$(debug-alt)"
+			},
+			{
+				"command": "rayDebugger.refreshClusters",
+				"title": "Refresh clusters",
+				"category": "Ray Debugger",
+				"icon": "$(debug-alt)"
+			},
+			{
+				"command": "rayDebugger.addCluster",
+				"category": "Ray Debugger",
+				"title": "Add cluster",
+				"icon": "$(add)"
+			},
+			{
+				"command": "rayDebugger.removeCluster",
+				"category": "Ray Debugger",
+				"title": "Remove Cluster"
+			},
+			{
+				"command": "rayDebugger.configureLocalFolder",
+				"category": "Ray Debugger",
+				"title": "Configure Debugger Local Folder",
+				"icon": "$(gear)"
+			},
+			{
+				"command": "rayDebugger.openReadme",
+				"category": "Ray Debugger",
+				"title": "Open Ray Debugger README",
+				"icon": "$(question)"
+			}
+		],
+		"menus": {
+			"view/item/context": [
+				{
+					"command": "rayDebugger.startDebugging",
+					"when": "view == rayDebuggerClusterList && viewItem == RayDebuggerPausedTaskItemContextValue",
+					"group": "inline"
+				},
+				{
+					"command": "rayDebugger.configureLocalFolder",
+					"when": "view == rayDebuggerClusterList && viewItem == RayDebuggerClusterItemContextValue",
+					"group": "inline"
+				},
+				{
+					"command": "rayDebugger.configureLocalFolder",
+					"when": "view == rayDebuggerClusterList && viewItem == RayDebuggerClusterItemContextValue"
+				},
+				{
+					"command": "rayDebugger.removeCluster",
+					"when": "view == rayDebuggerClusterList && viewItem == RayDebuggerClusterItemContextValue"
+				}
+			],
+			"view/title": [
+				{
+					"command": "rayDebugger.addCluster",
+					"when": "view == rayDebuggerClusterList",
+					"group": "navigation"
+				},
+				{
+					"command": "rayDebugger.openReadme",
+					"when": "view == rayDebuggerClusterList",
+					"group": "navigation"
+				}
+			]
+		},
+		"configuration": [
+			{
+				"title": "Ray Distributed Debugger",
+				"properties": {
+					"anyscalecompute.ray-distributed-debugger.activationToken": {
+						"type": "string",
+						"scope": "machine"
+					},
+					"anyscalecompute.ray-distributed-debugger.initialized": {
+						"type": "boolean",
+						"scope": "machine"
+					},
+					"anyscalecompute.ray-distributed-debugger.clusterDashboards": {
+						"type": "list",
+						"scope": "window",
+						"description": "A list of clusters listened by ray debugger."
+					}
+				}
+			}
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "ray-debugger",
+					"title": "Ray Debugger",
+					"icon": "ray-debugger.png"
+				}
+			]
+		},
+		"views": {
+			"ray-debugger": [
+				{
+					"id": "rayDebuggerClusterList",
+					"name": "Clusters"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js",
+		"build": "npm run vscode:prepublish && vsce package"
+	},
+	"devDependencies": {
+		"@types/async-lock": "^1.4.2",
+		"@types/fs-extra": "^9.0.13",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "14.x",
+		"@types/vscode": "^1.66.0",
+		"@typescript-eslint/eslint-plugin": "^5.21.0",
+		"@typescript-eslint/parser": "^5.21.0",
+		"@vscode/test-electron": "^2.1.3",
+		"copy-webpack-plugin": "^12.0.2",
+		"eslint": "^8.14.0",
+		"glob": "^8.0.1",
+		"mocha": "^9.2.2",
+		"ts-loader": "^9.2.8",
+		"typescript": "^4.6.4",
+		"vsce": "^2.15.0",
+		"webpack": "^5.70.0",
+		"webpack-cli": "^4.9.2"
+	},
+	"dependencies": {
+		"async-lock": "^1.4.1",
+		"fs-extra": "^10.1.0",
+		"marked": "^12.0.2",
+		"node-fetch": "^3.2.4",
+		"node-machine-id": "^1.1.12",
+		"ssh-config": "^4.1.4"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/anyscale/vscode-extension-oss-ray-debugger.git"
+	},
+	"__metadata": {
+		"installedTimestamp": 1758538559428,
+		"size": 170675
+	}
+}

@@ -1,0 +1,714 @@
+{
+	"publisher": "Alibaba-Cloud",
+	"name": "tongyi-lingma",
+	"displayName": "Lingma - Alibaba Cloud AI Coding Assistant",
+	"description": "Type Less, Code More",
+	"version": "2.5.9",
+	"engines": {
+		"vscode": "^1.68.0"
+	},
+	"icon": "media/logo.png",
+	"categories": [
+		"Machine Learning",
+		"Programming Languages",
+		"Education",
+		"Snippets"
+	],
+	"activationEvents": [
+		"onStartupFinished"
+	],
+	"keywords": [
+		"通义灵码",
+		"通义",
+		"灵码",
+		"tongyilingma",
+		"tongyi",
+		"lingma",
+		"阿里云",
+		"aliyun",
+		"通义千问",
+		"tongyiqianwen",
+		"AI 自动编程",
+		"编码助手",
+		"ai coding assistant",
+		"codegen",
+		"autocomplete",
+		"autocoding",
+		"inline completion",
+		"code generation",
+		"chatglm",
+		"java",
+		"python",
+		"go",
+		"javascript",
+		"c#",
+		"php",
+		"typescript"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "tongyi.explain.code",
+				"title": "%common.action.cosy.explain.code%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.generate.unit-tests",
+				"title": "%common.action.cosy.generate.unit-tests%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.generate.comment",
+				"title": "%common.action.cosy.generate.code-comments%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.optimize.code",
+				"title": "%common.action.cosy.optimize.code%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.terminal.explain",
+				"title": "%code.action.terminal.explain%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.chat.history",
+				"title": "%view.action.cosy.chat.history.title%",
+				"category": "%common.command.category%",
+				"icon": "$(history)"
+			},
+			{
+				"command": "tongyi.open.help",
+				"title": "%view.action.cosy.open.help.title%",
+				"category": "%common.command.category%",
+				"icon": "$(question)"
+			},
+			{
+				"command": "tongyi.issue.report",
+				"title": "%view.action.cosy.issue.report.title%",
+				"category": "%common.command.category%",
+				"icon": "$(feedback)"
+			},
+			{
+				"command": "tongyi.open.settings",
+				"title": "%view.action.cosy.open.setting.title%",
+				"category": "%common.command.category%",
+				"icon": "$(settings-gear)"
+			},
+			{
+				"command": "tongyi.open.settings.quick.pick",
+				"title": "%view.action.cosy.open.setting.quick.pick.title%",
+				"category": "%common.command.category%",
+				"icon": "$(settings-gear)"
+			},
+			{
+				"command": "tongyi.login",
+				"title": "%common.cosy.login.aliyun.title%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.login.aksk",
+				"title": "%common.cosy.login.aliyun.aksk.title%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.login.alibabacloud",
+				"title": "%common.cosy.login.alibabacloud.title%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.login.alibabacloud.aksk",
+				"title": "%common.cosy.login.alibabacloud.aksk.title%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.login.accesstoken",
+				"title": "%common.cosy.login.personal_token.title%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.login.remoteWeb",
+				"title": "%common.cosy.login.remoteWeb.title%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.logout",
+				"title": "%common.cosy.logout.title%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.show.panel.chat",
+				"title": "%common.cosy.show.panel.chat%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.set.logLevel",
+				"title": "%common.cosy.set.logLevel%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.inline.edit",
+				"title": "%common.action.cosy.inline.edit%",
+				"category": "%common.command.category%"
+			},
+			{
+				"command": "tongyi.inline.edit.accept",
+				"title": "%DiffApply.Accept%",
+				"category": "%common.command.category%",
+				"icon": "$(check)"
+			},
+			{
+				"command": "tongyi.inline.edit.reject",
+				"title": "%DiffApply.Reject%",
+				"category": "%common.command.category%",
+				"icon": "$(close)"
+			},
+			{
+				"command": "tongyi.inline.edit.generating",
+				"title": "Generating...",
+				"category": "%common.command.category%",
+				"icon": "$(sync~spin)"
+			},
+			{
+				"command": "tongyi.apply.file.accept",
+				"title": "%DiffApply.Accept%",
+				"category": "%common.command.category%",
+				"icon": "$(check)"
+			},
+			{
+				"command": "tongyi.apply.file.reject",
+				"title": "%DiffApply.Reject%",
+				"category": "%common.command.category%",
+				"icon": "$(close)"
+			},
+			{
+				"command": "tongyi.apply.file.previous",
+				"title": "%WorkSpace.SnapShot.File.PreviousFile%",
+				"category": "%common.command.category%",
+				"icon": "$(chevron-left)"
+			},
+			{
+				"command": "tongyi.apply.file.next",
+				"title": "%WorkSpace.SnapShot.File.NextFile%",
+				"category": "%common.command.category%",
+				"icon": "$(chevron-right)"
+			},
+			{
+				"command": "tongyi.command.generateCommitMessage",
+				"group": "Commit",
+				"title": "%commit.msg.generate%",
+				"icon": "$(tongyi-small-icon)",
+				"when": "scmProvider == git && TongyiLingMa.Chat.active && !tongyi.isGeneratingCommit"
+			},
+			{
+				"command": "tongyi.command.abort.generateCommitMessage",
+				"group": "Commit",
+				"title": "%commit.msg.generate.stop%",
+				"icon": "$(tongyi-pause-icon)",
+				"when": "scmProvider == git && TongyiLingMa.Chat.active && tongyi.isGeneratingCommit"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "tongyi.show.panel.chat",
+				"key": "shift+ctrl+l",
+				"mac": "shift+cmd+l",
+				"when": "TongyiLingMa.Chat.active"
+			},
+			{
+				"command": "tongyi.action.inlineSuggest.trigger",
+				"key": "alt+p",
+				"mac": "alt+p",
+				"when": "TongyiLingMa.Chat.active"
+			},
+			{
+				"command": "tongyi.action.inlineSuggest.acceptNextLine",
+				"key": "ctrl+down",
+				"mac": "cmd+down",
+				"when": "TongyiLingMa.Chat.active && inlineSuggestionVisible && !editorReadonly"
+			},
+			{
+				"command": "tongyi.explain.code",
+				"key": "shift+alt+p",
+				"mac": "shift+alt+p",
+				"when": "TongyiLingMa.Chat.active"
+			},
+			{
+				"command": "tongyi.generate.unit-tests",
+				"key": "shift+alt+u",
+				"mac": "shift+alt+u",
+				"when": "TongyiLingMa.Chat.active"
+			},
+			{
+				"command": "tongyi.generate.comment",
+				"key": "shift+alt+v",
+				"mac": "shift+alt+v",
+				"when": "TongyiLingMa.Chat.active"
+			},
+			{
+				"command": "tongyi.optimize.code",
+				"key": "shift+alt+m",
+				"mac": "shift+alt+m",
+				"when": "TongyiLingMa.Chat.active"
+			},
+			{
+				"command": "tongyi.inline.edit",
+				"key": "ctrl+shift+i",
+				"mac": "cmd+shift+i",
+				"when": "TongyiLingMa.Chat.active"
+			}
+		],
+		"submenus": [
+			{
+				"id": "lingma-menus",
+				"label": "%product.title%"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"group": "2_cosy",
+					"submenu": "lingma-menus",
+					"title": "Lingma"
+				}
+			],
+			"terminal/context": [
+				{
+					"command": "tongyi.terminal.explain",
+					"group": "navigation@1"
+				}
+			],
+			"view/title": [
+				{
+					"command": "tongyi.chat.history",
+					"when": "view == TongyiLingMa.Chat",
+					"group": "navigation@1"
+				},
+				{
+					"command": "tongyi.open.help",
+					"when": "view == TongyiLingMa.Chat",
+					"group": "navigation@3"
+				},
+				{
+					"command": "tongyi.open.settings",
+					"when": "view == TongyiLingMa.Chat",
+					"group": "navigation@5"
+				},
+				{
+					"command": "tongyi.issue.report",
+					"when": "view == TongyiLingMa.Chat",
+					"group": "navigation@4"
+				}
+			],
+			"lingma-menus": [
+				{
+					"command": "tongyi.explain.code",
+					"title": "%common.action.cosy.explain.code%",
+					"group": "cosy2@2"
+				},
+				{
+					"command": "tongyi.generate.unit-tests",
+					"title": "%common.action.cosy.generate.unit-tests%",
+					"group": "cosy2@3"
+				},
+				{
+					"command": "tongyi.generate.comment",
+					"title": "%common.action.cosy.generate.code-comments%",
+					"group": "cosy2@4"
+				},
+				{
+					"command": "tongyi.optimize.code",
+					"title": "%common.action.cosy.optimize.code%",
+					"group": "cosy2@5"
+				}
+			],
+			"scm/title": [
+				{
+					"command": "tongyi.command.generateCommitMessage",
+					"when": "scmProvider == git && TongyiLingMa.Chat.active && !tongyi.isGeneratingCommit",
+					"group": "navigation@-1002"
+				},
+				{
+					"command": "tongyi.command.abort.generateCommitMessage",
+					"when": "scmProvider == git && TongyiLingMa.Chat.active && tongyi.isGeneratingCommit",
+					"group": "navigation@-1002"
+				}
+			],
+			"editor/title": [
+				{
+					"command": "tongyi.apply.file.accept",
+					"group": "navigation@-1002",
+					"when": "TongyiLingMa.Chat.active && inLingmaDiffApplyView && LingmaDiffApplyWriteable"
+				},
+				{
+					"command": "tongyi.apply.file.reject",
+					"group": "navigation@-1002",
+					"when": "TongyiLingMa.Chat.active && inLingmaDiffApplyView && LingmaDiffApplyWriteable"
+				},
+				{
+					"command": "tongyi.apply.file.previous",
+					"group": "navigation@-1001",
+					"when": "TongyiLingMa.Chat.active && inLingmaDiffApplyView && lingmaDiffApplyPrevious"
+				},
+				{
+					"command": "tongyi.apply.file.next",
+					"group": "navigation@-1000",
+					"when": "TongyiLingMa.Chat.active && inLingmaDiffApplyView && lingmaDiffApplyNext"
+				},
+				{
+					"command": "tongyi.inline.edit.accept",
+					"group": "navigation@-1002",
+					"when": "TongyiLingMa.Chat.active && inLingmaInlineDiffView && !lingmaInlineDiffViewGenerating"
+				},
+				{
+					"command": "tongyi.inline.edit.reject",
+					"group": "navigation@-1002",
+					"when": "TongyiLingMa.Chat.active && inLingmaInlineDiffView && !lingmaInlineDiffViewGenerating"
+				},
+				{
+					"command": "tongyi.inline.edit.generating",
+					"group": "navigation@-1002",
+					"when": "TongyiLingMa.Chat.active && inLingmaInlineDiffView && lingmaInlineDiffViewGenerating"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "TongyiLingma",
+					"title": "%product.title%",
+					"icon": "media/logo-sidebar.svg"
+				}
+			]
+		},
+		"views": {
+			"TongyiLingma": [
+				{
+					"type": "webview",
+					"id": "TongyiLingMa.Chat",
+					"name": "%product.title%",
+					"icon": "media/logo-sidebar.svg"
+				}
+			]
+		},
+		"configuration": {
+			"id": "Lingma",
+			"type": "object",
+			"title": "Lingma",
+			"properties": {
+				"Lingma.dedicatedDomainURL": {
+					"order": 0,
+					"type": "string",
+					"default": "",
+					"scope": "application",
+					"markdownDescription": "%settings.cosy.dedicatedDomainURLdescription%",
+					"pattern": "^(http|https)://\\S*$|^$"
+				},
+				"Lingma.cloudModelEnable": {
+					"order": 1,
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "%settings.cosy.cloudModel.enable.description%"
+				},
+				"Lingma.cloudModelAutoTriggerGenerateLength": {
+					"order": 2,
+					"type": "string",
+					"default": "medium",
+					"enum": [
+						"line",
+						"short",
+						"medium",
+						"long",
+						"disable"
+					],
+					"enumItemLabels": [
+						"%settings.common.generateLength.item.line.description%",
+						"%settings.common.generateLength.item.level1.description%",
+						"%settings.common.generateLength.item.level2.description%",
+						"%settings.common.generateLength.item.level3.description%",
+						"%settings.common.modelLevel.item.disable.description%"
+					],
+					"description": "%settings.cosy.cloudModel.autotrigger.generateLength.description%"
+				},
+				"Lingma.cloudModelManualTriggerGenerateLength": {
+					"order": 3,
+					"type": "string",
+					"default": "medium",
+					"enum": [
+						"line",
+						"short",
+						"medium",
+						"long"
+					],
+					"enumItemLabels": [
+						"%settings.common.generateLength.item.line.description%",
+						"%settings.common.generateLength.item.level1.description%",
+						"%settings.common.generateLength.item.level2.description%",
+						"%settings.common.generateLength.item.level3.description%"
+					],
+					"description": "%settings.cosy.cloudModel.manualtrigger.generateLength.description%"
+				},
+				"Lingma.cloudModelAutoTriggerDisplayRule": {
+					"order": 4,
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "%settings.cosy.cloudModel.AutoTriggerDisplayRule%"
+				},
+				"Lingma.cloudModelLanguagesOrFileExtensions": {
+					"order": 6,
+					"type": "string",
+					"default": "plaintext",
+					"markdownDescription": "%settings.cosy.cloudModel.LanguagesOrFileExtensions%",
+					"pattern": "^(?:[^,]+(?:,[^,]+)*)?$"
+				},
+				"Lingma.localMachineModel": {
+					"order": 10,
+					"type": "boolean",
+					"default": false,
+					"description": "%settings.cosy.localModel.enable.description%"
+				},
+				"Lingma.localMachineModelInferenceMode": {
+					"order": 11,
+					"type": "string",
+					"default": "auto",
+					"enum": [
+						"auto",
+						"speed",
+						"length"
+					],
+					"enumItemLabels": [
+						"%settings.cosy.localModel.inferenceMode.item.auto.description%",
+						"%settings.cosy.localModel.inferenceMode.item.speed.description%",
+						"%settings.cosy.localModel.inferenceMode.item.length.description%"
+					],
+					"description": "%settings.cosy.localModel.inferenceMode.description%"
+				},
+				"Lingma.localMachineModelMaxCandidateNum": {
+					"order": 12,
+					"type": "number",
+					"default": 3,
+					"minimum": 1,
+					"maximum": 5,
+					"description": "%settings.cosy.localModel.maxCandidateNum.description%"
+				},
+				"Lingma.methodQuickOperation": {
+					"order": 28,
+					"type": "boolean",
+					"default": true,
+					"description": "%settings.cosy.other.methodQuickTrigger.description%"
+				},
+				"Lingma.aI Chat.webToolsInAsk/AgentMode": {
+					"order": 29,
+					"type": "string",
+					"default": "Ask every time",
+					"enum": [
+						"Auto-execute",
+						"Ask every time",
+						"Disabled"
+					],
+					"enumItemLabels": [
+						"%settings.cosy.webTools.item.autoExecute.description%",
+						"%settings.cosy.webTools.item.askEveryTime.description%",
+						"%settings.cosy.webTools.item.disabled.description%"
+					],
+					"description": "%settings.cosy.other.webToolsInAsk/AgentMode.description%"
+				},
+				"Lingma.aI Chat.mcpToolsInAgentMode": {
+					"order": 30,
+					"type": "boolean",
+					"default": false,
+					"description": "%settings.cosy.other.mcpToolsInAgentMode.description%"
+				},
+				"Lingma.aI Chat.commandAllowlistInAgentMode": {
+					"order": 31,
+					"type": "string",
+					"default": "",
+					"description": "%settings.cosy.other.commandAllowlistInChatAgent.description%",
+					"scope": "application"
+				},
+				"Lingma.aI Rules.projectRule": {
+					"order": 32,
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "%settings.cosy.enable.project.rules%"
+				},
+				"Lingma.HttpProxySettings": {
+					"order": 33,
+					"type": "string",
+					"description": "%settings.cosy.other.HttpProxyMode.description%",
+					"default": "system",
+					"enum": [
+						"system",
+						"manual"
+					],
+					"enumDescriptions": [
+						"%settings.cosy.other.HttpProxyMode.system.description%",
+						"%settings.cosy.other.HttpProxyMode.manual.description%"
+					],
+					"scope": "machine"
+				},
+				"Lingma.HttpProxyConfigurationURL": {
+					"order": 34,
+					"type": "string",
+					"description": "%settings.cosy.other.HTTPProxy.description%",
+					"scope": "machine"
+				},
+				"Lingma.LocalMachineStoragePath": {
+					"order": 35,
+					"type": "string",
+					"description": "%settings.cosy.other.LocalStoragePath.description%",
+					"scope": "machine"
+				},
+				"Lingma.DisplayLanguage": {
+					"order": 36,
+					"type": "string",
+					"description": "%settings.cosy.other.DisplayLanguage.description%",
+					"default": "%settings.cosy.DisplayLanguage.item.default.description%",
+					"enum": [
+						"%settings.cosy.DisplayLanguage.item.default.description%",
+						"简体中文",
+						"English"
+					]
+				},
+				"Lingma.PreferredLanguage for AI Chat": {
+					"order": 37,
+					"type": "string",
+					"description": "%settings.cosy.other.PreferredLanguageForAIChat.description%",
+					"default": "%settings.cosy.DisplayLanguage.item.default.description%",
+					"enum": [
+						"%settings.cosy.DisplayLanguage.item.default.description%",
+						"简体中文",
+						"English"
+					]
+				},
+				"Lingma.PreferredLanguage forCommitMessage": {
+					"order": 38,
+					"type": "string",
+					"description": "%settings.cosy.other.PreferredLanguageForCommitMessage.description%",
+					"default": "%settings.cosy.DisplayLanguage.item.default.description%",
+					"enum": [
+						"%settings.cosy.DisplayLanguage.item.default.description%",
+						"简体中文",
+						"English"
+					]
+				}
+			}
+		},
+		"javaExtensions": [],
+		"icons": {
+			"tongyi-icon": {
+				"description": "tongyi logo",
+				"default": {
+					"fontPath": "media/logo-codelens.woff",
+					"fontCharacter": "\\E900"
+				}
+			},
+			"tongyi-small-icon": {
+				"description": "tongyi logo",
+				"default": {
+					"fontPath": "media/logo-codelens.woff",
+					"fontCharacter": "\\E901"
+				}
+			},
+			"tongyi-error-icon": {
+				"description": "tongyi logo",
+				"default": {
+					"fontPath": "media/logo-error.woff",
+					"fontCharacter": "\\E900"
+				}
+			},
+			"tongyi-pause-icon": {
+				"description": "tongyi pause icon",
+				"default": {
+					"fontPath": "media/logo-pause.woff",
+					"fontCharacter": "\\E900"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"install:all": "npm install && cd webview-ui && npm install",
+		"vscode:prepublish": "npm run package",
+		"start:webview": "cd webview-ui && npm run start",
+		"build:webview": "cd webview-ui && npm run build",
+		"test:webview": "cd webview-ui && npm run test",
+		"compile": "webpack",
+		"watch": "node ./scripts/preTask.js && webpack --watch",
+		"preTask": "node ./scripts/preTask.js",
+		"package": "webpack --mode production",
+		"compile-tests": "tsc -p . --outDir out",
+		"watch-tests": "tsc -p . -w --outDir out",
+		"pretest": "npm run compile-tests && npm run compile && npm run lint",
+		"format": "prettier --write .",
+		"lint": "eslint webview-ui --ext .tsx,.ts",
+		"lint-fix": "eslint webview-ui --ext .tsx,.ts --fix",
+		"test": "node ./out/test/runTest.js"
+	},
+	"repository": "http://gitlab.alibaba-inc.com/cosy/cosy-vscode-new.git",
+	"devDependencies": {
+		"@types/diff": "^6.0.0",
+		"@types/glob": "^8.1.0",
+		"@types/jest": "^29.5.14",
+		"@types/lodash": "^4.14.198",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^20.14.10",
+		"@types/object-hash": "~3.0.0",
+		"@types/pinyin": "^2.10.2",
+		"@types/ws": "^8.5.4",
+		"@typescript-eslint/eslint-plugin": "^6.12.0",
+		"@typescript-eslint/parser": "^6.12.0",
+		"@vscode/l10n-dev": "^0.0.18",
+		"@vscode/test-electron": "^2.3.2",
+		"await-semaphore": "^0.1.3",
+		"bufferutil": "^4.0.7",
+		"copy-webpack-plugin": "^11.0.0",
+		"esbuild": "^0.16.17",
+		"eslint": "^8.54.0",
+		"eslint-plugin-react": "^7.33.2",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"file-loader": "^6.2.0",
+		"glob": "^8.1.0",
+		"html-loader": "^4.2.0",
+		"jest": "^29.7.0",
+		"lru-cache": "^10.0.0",
+		"mocha": "^10.2.0",
+		"node-loader": "^2.0.0",
+		"prettier": "^3.1.0",
+		"ts-jest": "^29.2.5",
+		"ts-loader": "^9.4.3",
+		"typescript": "^5.1.3",
+		"utf-8-validate": "^5.0.10",
+		"vscode-jsonrpc": "^8.1.0",
+		"vscode-languageclient": "8.1.0",
+		"vscode-ws-jsonrpc": "^3.0.0",
+		"webpack": "~5.85.0",
+		"webpack-cli": "^5.1.1",
+		"ws": "^8.10.0"
+	},
+	"dependencies": {
+		"@types/vscode": "^1.97.0",
+		"@vscode/l10n": "^0.0.10",
+		"antlr4": "^4.13.0",
+		"diff": "^7.0.0",
+		"events": "^3.3.0",
+		"iconv-lite": "^0.6.3",
+		"lodash": "^4.17.21",
+		"object-hash": "^3.0.0",
+		"p-wait-for": "^5.0.2",
+		"pinyin": "^4.0.0-alpha.2",
+		"react": "~18.0.0",
+		"react-dom": "~18.0.0",
+		"strip-ansi": "^7.1.0",
+		"unzipper": "^0.10.14",
+		"web-tree-sitter": "^0.21.0",
+		"winston": "^3.17.0",
+		"winston-daily-rotate-file": "^5.0.0"
+	},
+	"homepage": "https://tongyi.aliyun.com/lingma",
+	"__metadata": {
+		"installedTimestamp": 1758538550759,
+		"size": 227095274
+	}
+}

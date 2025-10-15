@@ -1,0 +1,6 @@
+[submodule "Vim"]
+	path = Vim
+	url = https://github.com/Lin-Korey/silver-waddle/VimGeoProj/Vim
+[submodule "VimGeo"]
+	path = VimGeo
+	url = https://github.com/Lin-Korey/silver-waddle/VimGeoProj/VimGeo
